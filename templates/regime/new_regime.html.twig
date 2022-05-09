@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Régime{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <a href="{{ path('app_regime') }}" class="btn btn-primary mt-4">Retour à l'index</a>
+        <h1 class="mt-4">Ajout d'un nouveau Régime</h1>
+
+        {{ form_start(newRegimeForm) }}
+            <div class="form-group">
+                {{ form_label(newRegimeForm.name)}}
+                {{ form_widget(newRegimeForm.name) }}
+                <div class="form-error">
+                    {{ form_errors(newRegimeForm.name) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(newRegimeForm.description)}}
+                {{ form_widget(newRegimeForm.description) }}
+                <div class="form-error">
+                    {{ form_errors(newRegimeForm.description) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(newRegimeForm.isPublished)}}
+                {{ form_widget(newRegimeForm.isPublished) }}
+                <div class="form-error">
+                    {{ form_errors(newRegimeForm.isPublished) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_row(newRegimeForm.submit) }}
+            </div>
+
+        {{ form_end(newRegimeForm) }}
+    </div>
+{% endblock %}

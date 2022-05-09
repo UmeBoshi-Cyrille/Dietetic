@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition Régime{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <a href="{{ path('app_regime') }}" class="btn btn-primary mt-4">Retour à l'index</a>
+        <h1 class="mt-4">Edition d'un Régime</h1>
+        
+        {{ form_start(editRegimeForm) }}
+            <div class="form-group">
+                {{ form_label(editRegimeForm.name)}}
+                {{ form_widget(editRegimeForm.name) }}
+                <div class="form-error">
+                    {{ form_errors(editRegimeForm.name) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(editRegimeForm.description)}}
+                {{ form_widget(editRegimeForm.description) }}
+                <div class="form-error">
+                    {{ form_errors(editRegimeForm.description) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(editRegimeForm.isPublished)}}
+                {{ form_widget(editRegimeForm.isPublished) }}
+                <div class="form-error">
+                    {{ form_errors(editRegimeForm.isPublished) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_row(editRegimeForm.submit) }}
+            </div>
+
+        {{ form_end(editRegimeForm) }}
+    </div>
+{% endblock %}

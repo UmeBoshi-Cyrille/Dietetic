@@ -5,9 +5,11 @@ namespace App\Entity;
 use App\Repository\RegimeRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RegimeRepository::class)]
+#[UniqueEntity('name')]
 class Regime
 {
     #[ORM\Id]
