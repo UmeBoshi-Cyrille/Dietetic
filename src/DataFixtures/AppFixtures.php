@@ -3,6 +3,8 @@
 namespace App\DataFixtures;
 
 use App\Entity\Allergene;
+use App\Entity\Ingredient;
+use App\Entity\Recette;
 use App\Entity\Regime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -41,6 +43,22 @@ class AppFixtures extends Fixture
                 ->setDescription('un Allergène');
     
             $manager->persist($allergene);
+        }
+
+        for ($i = 0; $i <= 10; $i++) {
+            $ingredient = new Ingredient();
+            $ingredient->setName($this->faker->word())
+                ->setDescription('un Ingrédient');
+    
+            $manager->persist($ingredient);
+        }
+
+        for ($i = 0; $i <= 10; $i++) {
+            $recette = new Recette();
+            $recette->setName($this->faker->word())
+                ->setDescription('Une recette');
+    
+            $manager->persist($recette);
         }
 
         $manager->flush();

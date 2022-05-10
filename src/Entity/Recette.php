@@ -26,7 +26,7 @@ class Recette
     #[Assert\NotNull()]
     private $description;
 
-    #[ORM\Column(type: 'string', length: 75, nullable: true)]
+    #[ORM\Column(type: 'string', length: 75)]
     #[Assert\NotBlank()]
     #[Assert\Length(min: 2, max: 75)]
     private string $preparationTime;
