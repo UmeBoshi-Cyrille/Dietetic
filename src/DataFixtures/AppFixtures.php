@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Allergene;
 use App\Entity\Regime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -30,6 +31,16 @@ class AppFixtures extends Fixture
                 ->setDescription('un régime');
     
             $manager->persist($regime);
+        }
+
+        for ($i = 0; $i <= 10; $i++) {
+            // $product = new Product();
+            // $manager->persist($product);
+            $allergene = new Allergene();
+            $allergene->setName($this->faker->word())
+                ->setDescription('un Allergène');
+    
+            $manager->persist($allergene);
         }
 
         $manager->flush();

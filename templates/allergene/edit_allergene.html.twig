@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition Allergène{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <a href="{{ path('app_allergene') }}" class="btn btn-primary mt-4">Retour à l'index</a>
+        <h1 class="mt-4">Edition d'un Allergène</h1>
+        
+        {{ form_start(editAllergeneForm) }}
+            <div class="form-group">
+                {{ form_label(editAllergeneForm.name)}}
+                {{ form_widget(editAllergeneForm.name) }}
+                <div class="form-error">
+                    {{ form_errors(editAllergeneForm.name) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(editAllergeneForm.description)}}
+                {{ form_widget(editAllergeneForm.description) }}
+                <div class="form-error">
+                    {{ form_errors(editAllergeneForm.description) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(editAllergeneForm.isPublished)}}
+                {{ form_widget(editAllergeneForm.isPublished) }}
+                <div class="form-error">
+                    {{ form_errors(editAllergeneForm.isPublished) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_row(editAllergeneForm.submit) }}
+            </div>
+
+        {{ form_end(editAllergeneForm) }}
+    </div>
+{% endblock %}

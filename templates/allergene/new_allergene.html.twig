@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Allergène{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <a href="{{ path('app_allergene') }}" class="btn btn-primary mt-4">Retour à l'index</a>
+        <h1 class="mt-4">Ajout d'un Allergène</h1>
+
+        {{ form_start(newAllergeneForm) }}
+            <div class="form-group">
+                {{ form_label(newAllergeneForm.name)}}
+                {{ form_widget(newAllergeneForm.name) }}
+                <div class="form-error">
+                    {{ form_errors(newAllergeneForm.name) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(newAllergeneForm.description)}}
+                {{ form_widget(newAllergeneForm.description) }}
+                <div class="form-error">
+                    {{ form_errors(newAllergeneForm.description) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(newAllergeneForm.isPublished)}}
+                {{ form_widget(newAllergeneForm.isPublished) }}
+                <div class="form-error">
+                    {{ form_errors(newAllergeneForm.isPublished) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_row(newAllergeneForm.submit) }}
+            </div>
+
+        {{ form_end(newAllergeneForm) }}
+    </div>
+{% endblock %}

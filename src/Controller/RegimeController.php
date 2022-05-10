@@ -6,7 +6,6 @@ use App\Entity\Regime;
 use App\Form\RegimeType;
 use App\Repository\RegimeRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\Id;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,7 +23,9 @@ class RegimeController extends AbstractController
      * @return Response
      */
     #[Route('/regime', name: 'app_regime', methods: ['GET'])]
-    public function index(RegimeRepository $regimeRepository, PaginatorInterface $paginator, Request $request): Response
+    public function index(RegimeRepository $regimeRepository, 
+        PaginatorInterface $paginator, 
+        Request $request): Response
     {
         // dd($regimes);
         $regimes = $paginator->paginate(
