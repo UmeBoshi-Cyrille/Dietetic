@@ -53,13 +53,15 @@ class AppFixtures extends Fixture
             $manager->persist($ingredient);
         }
 
-        // for ($i = 0; $i <= 10; $i++) {
-        //     $recette = new Recette();
-        //     $recette->setName($this->faker->word())
-        //         ->setDescription('Une recette');
+        for ($i = 0; $i <= 10; $i++) {
+            $recette = new Recette();
+            $recette->setName($this->faker->word())
+                ->setDescription($this->faker->text())
+                ->setPreparationTime(random_int(10, 60), 'minutes')
+                ->setStep($this->faker->text());
     
-        //     $manager->persist($recette);
-        // }
+            $manager->persist($recette);
+        }
 
         $manager->flush();
     }

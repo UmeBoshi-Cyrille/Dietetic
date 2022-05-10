@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recettes{% endblock %}
+
+{% block main %}
+    
+    <div class="container mt-4">
+        <h1>Les recettes</h1>
+
+        <a href="{{ path('app_recette.new') }}" class="btn btn-primary mt-3 mb-3">Ajouter une recette</a>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% if not recettes.items is same as ([]) %}
+            <div class="count mt-4">
+            <h4>
+                Il y a 
+                {{ recettes.getTotalItemCount }}
+                recettes au total.
+            </h4>
+            </div>
+
+            <table class="table table-hover">
+            <thead>
+                <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date de publication</th>
+                <th scope="col">Edition</th>
+                <th scope="col">Suppression</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recette in recettes %}
+                    <tr class="table-info">
+                        <th scope="row">{{ recette.id }}</th>
+                        <td>{{ recette.name }}</td>
+                        <td>{{ recette.description }}</td>
+                        <td>{{ recette.publishedAt|date('d/m/Y') }}</td>
+                        <td>
+                            <a href="{{ path('app_recette.edit', {'id': recette.id}) }}" class="btn btn-primary">edit</a>
+                        </td>
+                        <td>
+                            <a href="{{ path('app_recette.delete', {'id': recette.id}) }}" class="btn btn-danger">delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+            <div class="navigation d-flex justify-content-center mt-4 mb-4">
+                {{ knp_pagination_render(recettes) }}
+            </div>
+        {% else %}
+            <h4>
+                Il n'y a pas de recettes'
+            </h4>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle recette{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <a href="{{ path('app_recette') }}" class="btn btn-primary mt-4">Retour à l'index</a>
+        <h1 class="mt-4">Ajout d'une recette</h1>
+
+        {{ form_start(newRecetteForm) }}
+            <div class="form-group">
+                {{ form_label(newRecetteForm.name)}}
+                {{ form_widget(newRecetteForm.name) }}
+                <div class="form-error">
+                    {{ form_errors(newRecetteForm.name) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(newRecetteForm.description)}}
+                {{ form_widget(newRecetteForm.description) }}
+                <div class="form-error">
+                    {{ form_errors(newRecetteForm.description) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(newRecetteForm.preparationTime)}}
+                {{ form_widget(newRecetteForm.preparationTime) }}
+                <div class="form-error">
+                    {{ form_errors(newRecetteForm.preparationTime) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(newRecetteForm.restTime)}}
+                {{ form_widget(newRecetteForm.restTime) }}
+                <div class="form-error">
+                    {{ form_errors(newRecetteForm.restTime) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(newRecetteForm.cookingTime)}}
+                {{ form_widget(newRecetteForm.cookingTime) }}
+                <div class="form-error">
+                    {{ form_errors(newRecetteForm.cookingTime) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(newRecetteForm.step)}}
+                {{ form_widget(newRecetteForm.step) }}
+                <div class="form-error">
+                    {{ form_errors(newRecetteForm.step) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(newRecetteForm.isPublished)}}
+                {{ form_widget(newRecetteForm.isPublished) }}
+                <div class="form-error">
+                    {{ form_errors(newRecetteForm.isPublished) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_row(newRecetteForm.submit) }}
+            </div>
+
+        {{ form_end(newRecetteForm) }}
+    </div>
+{% endblock %}
