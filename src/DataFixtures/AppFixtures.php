@@ -45,7 +45,7 @@ class AppFixtures extends Fixture
             $manager->persist($allergene);
         }
 
-        for ($i = 0; $i <= 10; $i++) {
+        for ($i = 0; $i <= 60; $i++) {
             $ingredient = new Ingredient();
             $ingredient->setName($this->faker->word())
                 ->setDescription('un Ingrédient');
@@ -53,13 +53,13 @@ class AppFixtures extends Fixture
             $manager->persist($ingredient);
         }
 
-        for ($i = 0; $i <= 10; $i++) {
-            $recette = new Recette();
-            $recette->setName($this->faker->word())
-                ->setDescription('Une recette');
+        // for ($i = 0; $i <= 10; $i++) {
+        //     $recette = new Recette();
+        //     $recette->setName($this->faker->word())
+        //         ->setDescription('Une recette');
     
-            $manager->persist($recette);
-        }
+        //     $manager->persist($recette);
+        // }
 
         $manager->flush();
     }

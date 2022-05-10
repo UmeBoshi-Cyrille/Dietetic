@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition ingrédient{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <a href="{{ path('app_ingredient') }}" class="btn btn-primary mt-4">Retour à l'index</a>
+        <h1 class="mt-4">Edition d'un ingrédient</h1>
+        
+        {{ form_start(editIngredientForm) }}
+            <div class="form-group">
+                {{ form_label(editIngredientForm.name)}}
+                {{ form_widget(editIngredientForm.name) }}
+                <div class="form-error">
+                    {{ form_errors(editIngredientForm.name) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(editIngredientForm.description)}}
+                {{ form_widget(editIngredientForm.description) }}
+                <div class="form-error">
+                    {{ form_errors(editIngredientForm.description) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(editIngredientForm.isPublished)}}
+                {{ form_widget(editIngredientForm.isPublished) }}
+                <div class="form-error">
+                    {{ form_errors(editIngredientForm.isPublished) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_row(editIngredientForm.submit) }}
+            </div>
+
+        {{ form_end(editIngredientForm) }}
+    </div>
+{% endblock %}

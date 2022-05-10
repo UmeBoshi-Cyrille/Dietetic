@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau ingrédient{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <a href="{{ path('app_ingredient') }}" class="btn btn-primary mt-4">Retour à l'index</a>
+        <h1 class="mt-4">Ajout d'un ingrédient</h1>
+
+        {{ form_start(newIngredientForm) }}
+            <div class="form-group">
+                {{ form_label(newIngredientForm.name)}}
+                {{ form_widget(newIngredientForm.name) }}
+                <div class="form-error">
+                    {{ form_errors(newIngredientForm.name) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(newIngredientForm.description)}}
+                {{ form_widget(newIngredientForm.description) }}
+                <div class="form-error">
+                    {{ form_errors(newIngredientForm.description) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(newIngredientForm.isPublished)}}
+                {{ form_widget(newIngredientForm.isPublished) }}
+                <div class="form-error">
+                    {{ form_errors(newIngredientForm.isPublished) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_row(newIngredientForm.submit) }}
+            </div>
+
+        {{ form_end(newIngredientForm) }}
+    </div>
+{% endblock %}
