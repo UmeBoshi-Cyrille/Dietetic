@@ -23,15 +23,15 @@ class Regime
     private string $name;
 
     #[ORM\Column(type: 'text')]
-    #[Assert\NotNull()]
-    private $description;
+    #[Assert\NotBlank()]
+    private string $description;
 
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\NotNull()]
     private ?DateTimeImmutable $publishedAt;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
-    private $isPublished;
+    private bool $isPublished;
  
     public function __construct()
     {

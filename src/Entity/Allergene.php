@@ -22,14 +22,15 @@ class Allergene
     #[Assert\Length(min: 2, max: 55)]
     private string $name;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank()]
     private string $description;
 
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $publishedAt;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
-    private $isPublished;
+    private bool $isPublished;
 
     public function __construct()
     {
