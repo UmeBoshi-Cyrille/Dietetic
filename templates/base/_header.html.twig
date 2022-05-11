@@ -9,50 +9,93 @@
 
     <div class="collapse navbar-collapse" id="navbarColor02">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="{{ path('app_accueil') }}">Accueil
-            <span class="visually-hidden">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="{{ path('app_recette') }}">Recettes
-            <span class="visually-hidden">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="{{ path('app_regime') }}">Régimes
-            <span class="visually-hidden">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="{{ path('app_allergene') }}">Allergènes
-            <span class="visually-hidden">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="{{ path('app_ingredient') }}">Ingrédients
-            <span class="visually-hidden">(current)</span>
-          </a>
-        </li>
-        {# <li class="nav-item">
-          <a class="nav-link" href="#">Recettes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">à propos</a>
-        </li> #}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Recettes</a>
-            <a class="dropdown-item" href="#">Contact</a>
-            <a class="dropdown-item" href="#">à propos</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Connexion</a>
-          </div>
-        </li>
+        {% if is_granted('ROLE_ADMIN') %}
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_admin') }}">Accueil
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_recette') }}">Recettes
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_regime') }}">Régimes
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_allergene') }}">Allergènes
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_ingredient') }}">Ingrédients
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="{{ path('app_registration') }}">Patient</a>
+              <a class="dropdown-item" href="#">Contact</a>
+              <a class="dropdown-item" href="#">à propos</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
+            </div>
+          </li>
+        {% elseif is_granted('ROLE_USER') %}
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_accueil') }}">Accueil
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_recette') }}">Recettes
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_regime') }}">Contact
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu">
+              {# <a class="dropdown-item" href="{{ path('app_registration') }}">Mon Compte</a> #}
+              <a class="dropdown-item" href="#">à propos</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
+            </div>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_accueil') }}">Accueil
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_recette') }}">Recettes
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_regime') }}">Contact
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">à propos</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ path('app_login') }}">Connexion</a>
+            </div>
+          </li>
+        {% endif %}
+        
       </ul>
       <form class="d-flex">
         <input class="form-control me-sm-2" type="text" placeholder="Search">
