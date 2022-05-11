@@ -6,10 +6,12 @@ use App\Entity\Allergene;
 use App\Entity\Ingredient;
 use App\Entity\Recette;
 use App\Entity\Regime;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
@@ -81,6 +83,31 @@ class AppFixtures extends Fixture
             }
 
             $manager->persist($recette);
+        }
+
+        // User
+        for ($i =0 ; $i < 10; $i++) {
+            $user = new User();
+            $user->setLastname($this->faker->lastName())
+                ->setFirstname($this->faker->firstName())
+                ->setEmail($this->faker->email())
+                ->setRoles(['ROLE_USER'])
+                ->setPlainPassword('password');
+            // $hashPassword = $this->hasher->hashPassword(
+            //     $user,
+            //     'password'
+            // );
+
+            // $user->setPassword($hashPassword);
+
+            for ($a = 0; $a < mt_rand(1, 3); $a++) {
+                $user->addAllergene($allergenes[mt_rand(0, count($allergenes) - 1)]);
+            }
+            for ($r = 0; $r < mt_rand(1, 3); $r++) {
+                $user->addRegime($regimes[mt_rand(0, count($regimes) - 1)]);
+            }
+
+            $manager->persist($user);
         }
 
         $manager->flush();
