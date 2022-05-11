@@ -2,9 +2,17 @@
 
 namespace App\Form;
 
+use App\Entity\Allergene;
+use App\Entity\Ingredient;
 use App\Entity\Recette;
+use App\Entity\Regime;
+use App\Repository\AllergeneRepository;
+use App\Repository\IngredientRepository;
+use App\Repository\RegimeRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -41,51 +49,98 @@ class RecetteType extends AbstractType
                     'class' => 'form-label mt-4'
                 ],
                 'constraints' => [
-                    new Assert\NotNull()
+                    new Assert\NotBlank()
                 ]
             ])
-            ->add('preparationTime', TextType::class, [
+            ->add('regimes', EntityType::class, [
+                'attr' => [
+                    'class' => 'form-check'
+                ],
+                'class' => Regime::class,
+                'query_builder' => function (RegimeRepository $rr) {
+                    return $rr->createQueryBuilder('n')
+                        ->orderBy('n.name', 'ASC');
+                },
+                'label' => 'Les régimes',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+            ])
+            ->add('allergenes', EntityType::class, [
+                'class' => Allergene::class,
+                'query_builder' => function (AllergeneRepository $ar) {
+                    return $ar->createQueryBuilder('n')
+                        ->orderBy('n.name', 'ASC');
+                },
+                'label' => 'Les allergènes',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+            ])
+            ->add('preparationTime', IntegerType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'minlength' => '2',
-                    'maxlength' => '75'
+                    'min' => '1',
+                    'max' => '90'
                 ],
                 'label' => 'Temps de préparation',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
                 'constraints' => [
-                    new Assert\Length(['min' => 2, 'max' => 75]),
-                    new Assert\NotBlank()
+                    new Assert\Positive(),
+                    new Assert\LessThan(90)
                 ]
             ])
-            ->add('restTime', TextType::class, [
+            ->add('restTime', IntegerType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'minlength' => '2',
-                    'maxlength' => '75'
+                    'min' => '1',
+                    'max' => '90'
                 ],
                 'label' => 'Temps de repos',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
                 'constraints' => [
-                    new Assert\Length(['min' => 2, 'max' => 75]),
+                    new Assert\Positive(),
+                    new Assert\LessThan(90),
                 ]
             ])
-            ->add('cookingTime', TextType::class, [
+            ->add('cookingTime', IntegerType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'minlength' => '2',
-                    'maxlength' => '75'
+                    'min' => '1',
+                    'max' => '90'
                 ],
                 'label' => 'Temps de cuisson',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
                 'constraints' => [
-                    new Assert\Length(['min' => 2, 'max' => 75]),
+                    new Assert\Positive(),
+                    new Assert\LessThan(90),
                 ]
+            ])
+            ->add('ingredients', EntityType::class, [
+                'class' => Ingredient::class,
+                'query_builder' => function (IngredientRepository $ir) {
+                    return $ir->createQueryBuilder('n')
+                        ->orderBy('n.name', 'ASC');
+                },
+                'label' => 'Les ingrédients',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
             ])
             ->add('step', TextareaType::class, [
                 'attr' => [
@@ -101,7 +156,11 @@ class RecetteType extends AbstractType
             ])
             ->add('isPublished', CheckboxType::class, [
                 'attr' => [
-                    'class' => 'mt-3'
+                    'class' => 'form-check-input'
+                ],
+                'label' => 'Rendre public ?',
+                'label_attr' => [
+                    'class' => 'form-check-label'
                 ]
             ])
             ->add('submit', SubmitType::class, [

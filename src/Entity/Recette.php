@@ -28,20 +28,20 @@ class Recette
     #[Assert\NotBlank()]
     private string $description;
 
-    #[ORM\Column(type: 'integer', length: 75)]
+    #[ORM\Column(type: 'integer')]
     #[Assert\NotBlank()]
     #[Assert\Positive()]
-    #[Assert\LessThan(60)]
+    #[Assert\LessThan(90)]
     private ?int $preparationTime;
 
-    #[ORM\Column(type: 'integer', length: 75, nullable: true)]
+    #[ORM\Column(type: 'integer', nullable: true)]
     #[Assert\Positive()]
-    #[Assert\LessThan(60)]
+    #[Assert\LessThan(90)]
     private ?int $restTime;
 
-    #[ORM\Column(type: 'integer', length: 75, nullable: true)]
+    #[ORM\Column(type: 'integer', nullable: true)]
     #[Assert\Positive()]
-    #[Assert\LessThan(60)]
+    #[Assert\LessThan(90)]
     private ?int $cookingTime;
 
     #[ORM\Column(type: 'text')]

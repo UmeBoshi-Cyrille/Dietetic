@@ -23,6 +23,20 @@
                 </div>
             </div>
             <div class="form-group">
+                {{ form_label(editRecetteForm.regimes)}}
+                {{ form_widget(editRecetteForm.regimes) }}
+                <div class="form-error">
+                    {{ form_errors(editRecetteForm.regimes) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(editRecetteForm.allergenes)}}
+                {{ form_widget(editRecetteForm.allergenes) }}
+                <div class="form-error">
+                    {{ form_errors(editRecetteForm.allergenes) }}
+                </div>
+            </div>
+            <div class="form-group">
                 {{ form_label(editRecetteForm.preparationTime)}}
                 {{ form_widget(editRecetteForm.preparationTime) }}
                 <div class="form-error">
@@ -44,15 +58,22 @@
                 </div>
             </div>
             <div class="form-group">
+                {{ form_label(editRecetteForm.ingredients)}}
+                {{ form_widget(editRecetteForm.ingredients) }}
+                <div class="form-error">
+                    {{ form_errors(editRecetteForm.ingredients) }}
+                </div>
+            </div>
+            <div class="form-group">
                 {{ form_label(editRecetteForm.step)}}
                 {{ form_widget(editRecetteForm.step) }}
                 <div class="form-error">
                     {{ form_errors(editRecetteForm.step) }}
                 </div>
             </div>
-            <div class="form-group">
-                {{ form_label(editRecetteForm.isPublished)}}
+            <div class="form-group mt-4">
                 {{ form_widget(editRecetteForm.isPublished) }}
+                {{ form_label(editRecetteForm.isPublished)}}
                 <div class="form-error">
                     {{ form_errors(editRecetteForm.isPublished) }}
                 </div>
