@@ -52,11 +52,9 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         $user = $token->getUser();
         if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
             return new RedirectResponse($this->urlGenerator->generate('app_admin'));
-        } else {
-            // For example:
-            return new RedirectResponse($this->urlGenerator->generate('app_accueil'));
-            //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-        }
+        } else if (in_array('ROLE_USER', $user->getRoles(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate('app_user'));
+        } 
     }
 
     protected function getLoginUrl(Request $request): string

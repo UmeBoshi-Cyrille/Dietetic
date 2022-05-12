@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Regime;
 use App\Form\RegimeType;
@@ -14,6 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[IsGranted("ROLE_ADMIN")]
+#[Route('/admin')]
 class RegimeController extends AbstractController
 {
     /**

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition profil{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <a href="{{ path('app_user') }}" class="btn btn-primary mt-4">Retour à l'accueil</a>
+        <h1 class="mt-4">Formulaire de modification du profil utilisateur</h1>
+
+        {{ form_start(profilForm) }}
+            <div class="form-group">
+                {{ form_label(profilForm.lastname)}}
+                {{ form_widget(profilForm.lastname) }}
+                <div class="form-error">
+                    {{ form_errors(profilForm.lastname) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(profilForm.firstname)}}
+                {{ form_widget(profilForm.firstname) }}
+                <div class="form-error">
+                    {{ form_errors(profilForm.firstname) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(profilForm.plainPassword)}}
+                {{ form_widget(profilForm.plainPassword) }}
+                <div class="form-error">
+                    {{ form_errors(profilForm.plainPassword) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_row(profilForm.submit) }}
+            </div>
+
+        {{ form_end(profilForm) }}
+    </div>
+{% endblock %}

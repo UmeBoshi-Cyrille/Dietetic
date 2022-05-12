@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil utilisateur{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <a href="{{ path('app_user') }}" class="btn btn-primary mt-4">Retour à l'accueil</a>
+        <h1 class="mt-4">Votre profil Utilisateur</h1>
+
+        <div class="container-fluid d-flex flex-row">
+            <div class="container-fluid">
+                <h2 class="mt-4">Votre identité </h2>
+                <h4 class="mt-4">Votre Nom : {{ app.user.lastname }}</h4>
+                <h4 class="mt-4 mb-4">Votre Prénom : {{ app.user.firstname }}</h4>
+            </div>
+            <div class="d-grid gap-2">
+                <a class="btn btn-lg btn-primary" href="{{ path('app_profil-edit') }}">Modifier</a>
+            </div>
+        </div>
+        <div class="container-fluid d-flex flex-row mt-4 mb-4">
+            <div class="container-fluid">
+                <h2 class="mt-4">Votre identifiant </h2>
+                <h4 class="mt-4">Votre email : {{ app.user.email }}</h4>
+            </div>
+            <div class="d-grid gap-2">
+                <a class="btn btn-lg btn-primary" href="{{ path('app_password') }}">Modifier</a>
+            </div>
+        </div>
+        <div class="container-fluid d-flex flex-row mt-4 mb-4">
+            <div class="container-fluid">
+                <h2 class="mt-4">Votre mot de passe </h2>
+                <h4 class="mt-4 mb-4">Votre mot de passe : ********* </h4>
+            </div>
+            <div class="d-grid gap-2">
+                <a class="btn btn-lg btn-primary" href="{{ path('app_password') }}">Modifier</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

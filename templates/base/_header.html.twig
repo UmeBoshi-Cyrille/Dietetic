@@ -39,6 +39,7 @@
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="{{ path('app_registration') }}">Patient</a>
+              <a class="dropdown-item" href="{{ path('app_profil') }}">Mon Compte</a>
               <a class="dropdown-item" href="#">Contact</a>
               <a class="dropdown-item" href="#">à propos</a>
               <div class="dropdown-divider"></div>
@@ -47,24 +48,24 @@
           </li>
         {% elseif is_granted('ROLE_USER') %}
           <li class="nav-item">
-            <a class="nav-link active" href="{{ path('app_accueil') }}">Accueil
+            <a class="nav-link active" href="{{ path('app_user') }}">Accueil
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="{{ path('app_recette') }}">Recettes
+            <a class="nav-link active" href="#">Recettes
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="{{ path('app_regime') }}">Contact
+            <a class="nav-link active" href="#">Contact
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
             <div class="dropdown-menu">
-              {# <a class="dropdown-item" href="{{ path('app_registration') }}">Mon Compte</a> #}
+              <a class="dropdown-item" href="{{ path('app_profil') }}">Mon Compte</a>
               <a class="dropdown-item" href="#">à propos</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
@@ -77,12 +78,12 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="{{ path('app_recette') }}">Recettes
+            <a class="nav-link active" href="#">Recettes
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="{{ path('app_regime') }}">Contact
+            <a class="nav-link active" href="#">Contact
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
