@@ -4,12 +4,14 @@ namespace App\Controller\Security;
 
 use App\Entity\User;
 use App\Form\RegistrationType;
+use App\Form\UserPasswordType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -63,7 +65,7 @@ class SecurityController extends AbstractController
                 'Nouveau compte patient ajouté !'
             );
 
-            return $this->redirectToRoute('app_accueil');
+            return $this->redirectToRoute('app_admin');
         }
 
         return $this->render('security/register.html.twig', [
@@ -71,5 +73,59 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    
+    /**
+     * This function allow admin to modify his password
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @param UserPasswordHasherInterface $hasher
+     * @return Response
+     */
+    #[IsGranted("ROLE_ADMIN")]
+    #[Route('/admin/edition-mot-de-passe/{id}', name: 'app_adminPassword', methods: ['GET', 'POST'])]
+    public function editAdminPassword(User $user,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        UserPasswordHasherInterface $hasher): Response
+    {
+        if(!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if($this->getUser() !== $user) {
+            return $this->redirectToRoute('app_accueil');
+        }
+
+        $form = $this->createForm(UserPasswordType::class);
+
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) { 
+            if($hasher->isPasswordValid($user, $form->getData()['plainPassword'])) {
+                $user->setUpdatedAt(new \DateTimeImmutable());
+                $user->setPlainPassword(
+                    $form->getData()['newPassword']
+                );
+
+                $entityManager->persist($user);
+                $entityManager->flush();
+
+                $this->addFlash(
+                    'success', 
+                    'Votre mot de passe a été modifié avec succès!'
+                );
+
+                return $this->redirectToRoute('app_admin');
+            }else {
+                $this->addFlash(
+                    'warning', 
+                    'Le mot de passe renseigné est incorrect !'
+                );
+            }
+        }
+
+        return $this->render('security/edit_adminPassword.html.twig', [
+            'adminPasswordForm' => $form->createView()
+        ]);
+    }
 }

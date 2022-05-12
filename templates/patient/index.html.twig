@@ -1,20 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PatientController!{% endblock %}
+{% block title %}Comptes utilisateurs{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block main %}
+    
+    <div class="container mt-4">
+        <h1>Les comptes utilisateurs</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <a href="{{ path('app_registration') }}" class="btn btn-primary mt-3 mb-3">Ajouter un compte</a>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Sites/Lab/Laragon/Dietetic/src/Controller/PatientController.php'|file_link(0) }}">src/Controller/PatientController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Sites/Lab/Laragon/Dietetic/templates/patient/index.html.twig'|file_link(0) }}">templates/patient/index.html.twig</a></code></li>
-    </ul>
-</div>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% if not patients.items is same as ([]) %}
+            <div class="count mt-4">
+            <h4>
+                Il y a 
+                {{ patients.getTotalItemCount }}
+                patients inscrits.
+            </h4>
+            </div>
+
+            <table class="table table-hover">
+            <thead>
+                <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Date de création</th>
+                <th scope="col">Consulter</th>
+                <th scope="col">Edition</th>
+                <th scope="col">Suppression</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                    <tr class="table-info">
+                        <th scope="row">{{ patient.id }}</th>
+                        <td>{{ patient.firstname }}</td>
+                        <td>{{ patient.lastname }}</td>
+                        <td>{{ patient.createdAt|date('d/m/Y') }}</td>
+                        <td>
+                            <a href="{{ path('app_account', {'id': patient.id}) }}" class="btn btn-primary">Read</a>
+                        </td>
+                        <td>
+                            <a href="{{ path('app_accountEdit', {'id': patient.id}) }}" class="btn btn-primary">edit</a>
+                        </td>
+                        <td>
+                            <a href="{{ path('app_accountDelete', {'id': patient.id}) }}" class="btn btn-danger">delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+            <div class="navigation d-flex justify-content-center mt-4 mb-4">
+                {{ knp_pagination_render(patients) }}
+            </div>
+        {% else %}
+            <h4>
+                Il n'y a pas de patients.
+            </h4>
+        {% endif %}
+    </div>
 {% endblock %}
+

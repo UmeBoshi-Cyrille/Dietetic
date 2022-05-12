@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[IsGranted("ROLE_USER", "ROLE_ADMIN")]
+#[IsGranted("ROLE_USER")]
 #[Route('/utilisateur')]
 class UserController extends AbstractController
 {
@@ -30,7 +30,7 @@ class UserController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    #[Route('/profil/edition/{id}', name: 'app_profil-edit', methods: ['GET', 'POST'])]
+    #[Route('/profil/edition/{id}', name: 'app_profilEdit', methods: ['GET', 'POST'])]
     public function userEdit(User $user,
         Request $request,
         EntityManagerInterface $entityManager,
@@ -75,7 +75,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * This function allow user to modify his id and password
+     * This function allow user to modify his password
      *
      * @param Request $request
      * @param EntityManagerInterface $entityManager
@@ -102,11 +102,9 @@ class UserController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) { 
             if($hasher->isPasswordValid($user, $form->getData()['plainPassword'])) {
-                $user->setPassword(
-                    $hasher->hashPassword(
-                        $user,
-                        $form->getData()['newPassword']
-                    )
+                $user->setUpdatedAt(new \DateTimeImmutable());
+                $user->setPlainPassword(
+                    $form->getData()['newPassword']
                 );
 
                 $entityManager->persist($user);

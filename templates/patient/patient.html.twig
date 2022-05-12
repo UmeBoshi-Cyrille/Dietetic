@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil utilisateur{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <a href="{{ path('app_user') }}" class="btn btn-primary mt-4">Retour à l'accueil</a>
+        <h1 class="mt-4">Informations du compte utilisateur de {{ patient.firstname }} {{ patient.lastname }}</h1>
+
+        <div class="container-fluid d-flex flex-row">
+            <ul class="container-fluid">
+                <li class="mt-4 border p-2">Prénom : {{ patient.firstname }}</li>
+                <li class="mt-4 border p-2">Nom : {{ patient.lastname }}</li>
+                <li class="mt-4 border p-2">Email : {{ patient.email }}</li>
+                <li class="mt-4 border p-2">
+                    Allergènes : 
+                    {% for allergene in patient.allergenes %}
+                        {{ allergene }}
+                    {% endfor %}
+                </li>
+                <li class="mt-4 border mb-4 p-2">
+                    Régimes :
+                    {% for regime in patient.regimes %}
+                        {{ regime }}
+                    {% endfor %}
+                </li>
+            </ul>
+        </div>
+        <div class="container-fluid">
+            <a href="{{ path('app_accountEdit', {'id': patient.id}) }}" class="btn btn-primary">edit</a>
+            <a href="{{ path('app_accountDelete', {'id': patient.id}) }}" class="btn btn-danger">delete</a>
+        </div>
+    </div>
+{% endblock %}
