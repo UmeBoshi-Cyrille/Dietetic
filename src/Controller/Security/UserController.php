@@ -7,6 +7,7 @@ use App\Form\UserPasswordType;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,8 +31,9 @@ class UserController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
+    #[Security("is_granted('ROLE_USER') and user === currentUser")]
     #[Route('/profil/edition/{id}', name: 'app_profilEdit', methods: ['GET', 'POST'])]
-    public function userEdit(User $user,
+    public function userEdit(User $currentUser,
         Request $request,
         EntityManagerInterface $entityManager,
         UserPasswordHasherInterface $hasher): Response
@@ -40,19 +42,19 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        if($this->getUser() !== $user) {
-            return $this->redirectToRoute('app_accueil');
+        if($this->getUser() !== $currentUser) {
+            return $this->redirectToRoute('app_user');
         }
 
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $currentUser);
 
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) { 
-            if($hasher->isPasswordValid($user, $form->getData()->getPlainPassword())) {
-                $user = $form->getData();
+            if($hasher->isPasswordValid($currentUser, $form->getData()->getPlainPassword())) {
+                $currentUser = $form->getData();
 
-                $entityManager->persist($user);
+                $entityManager->persist($currentUser);
                 $entityManager->flush();
 
                 $this->addFlash(
@@ -69,7 +71,7 @@ class UserController extends AbstractController
             );
         }
 
-        return $this->render('user/edit.html.twig', [
+        return $this->render('user/edit_profil.html.twig', [
             'profilForm' => $form->createView()
         ]);
     }
@@ -82,8 +84,9 @@ class UserController extends AbstractController
      * @param UserPasswordHasherInterface $hasher
      * @return Response
      */
+    #[Security("is_granted('ROLE_USER') and user === currentUser")]
     #[Route('/profil/edition-mot-de-passe/{id}', name: 'app_password', methods: ['GET', 'POST'])]
-    public function userEditLogin(User $user,
+    public function userEditLogin(User $currentUser,
         Request $request,
         EntityManagerInterface $entityManager,
         UserPasswordHasherInterface $hasher): Response
@@ -92,7 +95,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        if($this->getUser() !== $user) {
+        if($this->getUser() !== $currentUser) {
             return $this->redirectToRoute('app_accueil');
         }
 
@@ -101,13 +104,13 @@ class UserController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) { 
-            if($hasher->isPasswordValid($user, $form->getData()['plainPassword'])) {
-                $user->setUpdatedAt(new \DateTimeImmutable());
-                $user->setPlainPassword(
+            if($hasher->isPasswordValid($currentUser, $form->getData()['plainPassword'])) {
+                $currentUser->setUpdatedAt(new \DateTimeImmutable());
+                $currentUser->setPlainPassword(
                     $form->getData()['newPassword']
                 );
 
-                $entityManager->persist($user);
+                $entityManager->persist($currentUser);
                 $entityManager->flush();
 
                 $this->addFlash(

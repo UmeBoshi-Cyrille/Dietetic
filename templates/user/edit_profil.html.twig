@@ -4,7 +4,7 @@
 
 {% block main %}
     <div class="container">
-        <a href="{{ path('app_user') }}" class="btn btn-primary mt-4">Retour à l'accueil</a>
+        <a href="{{ path('app_profil', { id: app.user.id }) }}" class="btn btn-primary mt-4">Retour au profil</a>
         <h1 class="mt-4">Formulaire de modification du profil utilisateur</h1>
 
         {{ form_start(profilForm) }}

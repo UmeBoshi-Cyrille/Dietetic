@@ -93,7 +93,7 @@ class SecurityController extends AbstractController
         }
 
         if($this->getUser() !== $user) {
-            return $this->redirectToRoute('app_accueil');
+            return $this->redirectToRoute('app_user');
         }
 
         $form = $this->createForm(UserPasswordType::class);
@@ -124,7 +124,7 @@ class SecurityController extends AbstractController
             }
         }
 
-        return $this->render('security/edit_adminPassword.html.twig', [
+        return $this->render('admin/edit_adminPassword.html.twig', [
             'adminPasswordForm' => $form->createView()
         ]);
     }

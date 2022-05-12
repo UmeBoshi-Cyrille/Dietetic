@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[IsGranted("ROLE_ADMIN")]
@@ -37,7 +38,7 @@ class RecetteController extends AbstractController
             $request->query->getInt('page', 1), 5
         );
 
-        return $this->render('recette/index.html.twig', [
+        return $this->render('recette/adminIndex.html.twig', [
             'recettes' => $recette
         ]);
     }
@@ -85,6 +86,7 @@ class RecetteController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
+    #[Security("is_granted('ROLE_ADMIN')")]
     #[Route('/recette/edit/{id}', name: 'app_recette.edit', methods: ['GET', 'POST'])]
     public function editrecette(Recette $recette,
         Request $request,

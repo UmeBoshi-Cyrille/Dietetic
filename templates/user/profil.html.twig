@@ -15,22 +15,9 @@
             </div>
             <div class="d-grid gap-2">
                 {% if is_granted('ROLE_USER') %}
-                    <a class="btn btn-lg btn-primary" href="{{ path('app_profilEdit') }}">Modifier</a>
+                    <a class="btn btn-lg btn-primary h-50 d-flex align-items-center align-self-center" href="{{ path('app_profilEdit', {id: app.user.id}) }}"><span>Modifier</span></a>
                 {% elseif is_granted('ROLE_ADMIN') %}
-                    <a class="btn btn-lg btn-primary" href="{{ path('app_adminEdit') }}">Modifier</a>
-                {% endif %}
-            </div>
-        </div>
-        <div class="container-fluid d-flex flex-row mt-4 mb-4">
-            <div class="container-fluid">
-                <h2 class="mt-4">Votre identifiant </h2>
-                <h4 class="mt-4">Votre email : {{ app.user.email }}</h4>
-            </div>
-            <div class="d-grid gap-2">
-                {% if is_granted('ROLE_USER') %}
-                    <a class="btn btn-lg btn-primary" href="{{ path('app_password') }}">Modifier</a>
-                {% elseif is_granted('ROLE_ADMIN') %}
-                    <a class="btn btn-lg btn-primary" href="{{ path('app_adminPassword') }}">Modifier</a>
+                    <a class="btn btn-lg btn-primary h-50 d-flex align-items-center align-self-center" href="{{ path('app_adminEdit', {id: app.user.id}) }}"><span>Modifier</span></a>
                 {% endif %}
             </div>
         </div>
@@ -41,9 +28,9 @@
             </div>
             <div class="d-grid gap-2">
                 {% if is_granted('ROLE_USER') %}
-                    <a class="btn btn-lg btn-primary" href="{{ path('app_password') }}">Modifier</a>
+                    <a class="btn btn-lg btn-primary h-50 d-flex align-items-center align-self-center" href="{{ path('app_password', {id: app.user.id}) }}"><span>Modifier</span></a>
                 {% elseif is_granted('ROLE_ADMIN') %}
-                    <a class="btn btn-lg btn-primary" href="{{ path('app_adminPassword') }}">Modifier</a>
+                    <a class="btn btn-lg btn-primary h-50 d-flex align-items-center align-self-center" href="{{ path('app_adminPassword', {id: app.user.id}) }}"><span>Modifier</span></a>
                 {% endif %}
             </div>
         </div>
