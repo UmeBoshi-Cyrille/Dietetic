@@ -4,10 +4,11 @@
 
 {% block main %}
     
-    <div class="container mt-4">
+    <div class="container mt-4 key_bg2 p-5">
         <h1>Les allergènes</h1>
-
-        <a href="{{ path('app_allergene.new') }}" class="btn btn-primary mt-3 mb-3">Ajouter un Allergène</a>
+        <div class="d-flex justify-content-end">
+            <a href="{{ path('app_allergene.new') }}" class="btn key_bg5 mt-3 mb-3">Ajouter un Allergène</a>
+        </div>
 
         {% for message in app.flashes('success') %}
             <div class="alert alert-success mt-4">
@@ -37,16 +38,16 @@
             </thead>
             <tbody>
                 {% for allergene in allergenes %}
-                    <tr class="table-info">
+                    <tr class="table key_bg1">
                         <th scope="row">{{ allergene.id }}</th>
                         <td>{{ allergene.name }}</td>
                         <td>{{ allergene.description }}</td>
                         <td>{{ allergene.publishedAt|date('d/m/Y') }}</td>
                         <td>
-                            <a href="{{ path('app_allergene.edit', {'id': allergene.id}) }}" class="btn btn-primary">edit</a>
+                            <a href="{{ path('app_allergene.edit', {'id': allergene.id}) }}" class="btn key_bg4">edit</a>
                         </td>
                         <td>
-                            <a href="{{ path('app_allergene.delete', {'id': allergene.id}) }}" class="btn btn-danger">delete</a>
+                            <a href="{{ path('app_allergene.delete', {'id': allergene.id}) }}" class="btn key_bg5">delete</a>
                         </td>
                     </tr>
                 {% endfor %}

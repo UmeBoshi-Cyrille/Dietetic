@@ -3,8 +3,8 @@
 {% block title %}Nouveau Patient{% endblock %}
 
 {% block main %}
-    <div class="container">
-        <a href="{{ path('app_accueil') }}" class="btn btn-primary mt-4">Retour à l'accueil</a>
+    <div class="container key_bg2 p-5 pt-4 mt-4">
+        <a href="{{ path('app_patients') }}" class="btn key_bg5 mt-4">Retour</a>
         <h1 class="mt-4">Formulaire d'inscription de Nouveau Patient</h1>
 
         {{ form_start(registerForm) }}
@@ -65,7 +65,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group d-flex justify-content-end">
                 {{ form_row(registerForm.submit) }}
             </div>
 

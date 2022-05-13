@@ -3,9 +3,9 @@
 {% block title %}Recette {{ recipe.name }} {% endblock %}
 
 {% block main %}
-    <div class="container">
-        <a href="{{ path('app_accueil') }}" class="btn btn-primary mt-4">Retour à l'accueil</a>
-        <h1 class="mt-4">{{ recipe.name }}</h1>
+    <div class="container key_bg2">
+        <a href="{{ path('app_accueil') }}" class="btn key_bg5 mt-4 ms-2">Retour à l'accueil</a>
+        <h1 class="mt-4">{{ recipe.name|capitalize }}</h1>
         <span>Créée le {{ recipe.publishedAt|date('d/m/Y') }}</span>
         <ul class="container-fluid">
             <li class="mt-4">

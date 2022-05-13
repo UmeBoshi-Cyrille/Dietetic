@@ -4,10 +4,11 @@
 
 {% block main %}
     
-    <div class="container mt-4">
+    <div class="container mt-4 key_bg2 p-5 pt-4">
         <h1>Les ingrédients</h1>
-
-        <a href="{{ path('app_ingredient.new') }}" class="btn btn-primary mt-3 mb-3">Ajouter un ingrédient</a>
+        <div class="d-flex justify-content-end">
+            <a href="{{ path('app_ingredient.new') }}" class="btn key_bg5 mt-3 mb-3">Ajouter un ingrédient</a>
+        </div>
 
         {% for message in app.flashes('success') %}
             <div class="alert alert-success mt-4">
@@ -37,16 +38,16 @@
             </thead>
             <tbody>
                 {% for ingredient in ingredients %}
-                    <tr class="table-info">
+                    <tr class="table key_bg1">
                         <th scope="row">{{ ingredient.id }}</th>
                         <td>{{ ingredient.name }}</td>
                         <td>{{ ingredient.description }}</td>
                         <td>{{ ingredient.publishedAt|date('d/m/Y') }}</td>
                         <td>
-                            <a href="{{ path('app_ingredient.edit', {'id': ingredient.id}) }}" class="btn btn-primary">edit</a>
+                            <a href="{{ path('app_ingredient.edit', {'id': ingredient.id}) }}" class="btn key_bg4">edit</a>
                         </td>
                         <td>
-                            <a href="{{ path('app_ingredient.delete', {'id': ingredient.id}) }}" class="btn btn-danger">delete</a>
+                            <a href="{{ path('app_ingredient.delete', {'id': ingredient.id}) }}" class="btn key_bg5">delete</a>
                         </td>
                     </tr>
                 {% endfor %}

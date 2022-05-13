@@ -3,18 +3,24 @@
 {% block title %}Accueil User{% endblock %}
 
 {% block main %}
-<div class="container mt-4">
+<div class="header_img"></div>
+<div class="container mt-4 key_bg2 pb-5">
     {% for message in app.flashes('success') %}
         <div class="alert alert-success mt-4">
             {{ message }}
         </div>
     {% endfor %}
+    <div class="container-fluid w-50">
+        <img src="{{ asset('assets/images/cafe.png') }}" alt="" class="w-100">
+    </div>
     <div class="jumbotron">
-        <h1 class="display-4">Bienvenue {{ app.user.firstname }} {{ app.user.lastname }} !</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <h1 class="display-4 text-center mb-4 mt-4 key-ftdw">Bienvenue {{ app.user.firstname }} {{ app.user.lastname }} !</h1>
+        <p class="lead text-center key-ftdw">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
         <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg mt-4 mb-4" href="{{ path('app_logout') }}" role="button">Déconnexion</a>
+        <p class="text-center key-ftdw">It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <div class="d-flex justify-content-center">
+            <a class="btn key_bg5 btn-lg mt-4 mb-4 key-ftdw" href="{{ path('app_logout') }}" role="button">Déconnexion</a>
+        </div>
     </div>
 </div>
 

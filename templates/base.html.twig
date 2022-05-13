@@ -9,15 +9,16 @@
     <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/minty/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/minty/_variables.scss">
+    <link rel="stylesheet" href="{{ asset('assets/css/color.css') }}">
 </head>
-<body>
+<body class="key_bg3">
     <header>
         {% include "base/_header.html.twig" %}
     </header>
 
     {% block main %}{% endblock %}
 
-    <footer class="border-top">
+    <footer class="border-top key_bg3">
         {% include "base/_footer.html.twig" %}
     </footer>
 

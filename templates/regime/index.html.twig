@@ -3,11 +3,11 @@
 {% block title %}Régimes et allergènes{% endblock %}
 
 {% block main %}
-    <div class="container mt-5">
+    <div class="container mt-5 key_bg2 p-5">
         <h1>Nos Régimes</h1>
-
-        <a href="{{ path('app_regime.new') }}" class="btn btn-primary mt-3">Ajouter un Régime</a>
-
+        <div class="d-flex justify-content-end">
+            <a href="{{ path('app_regime.new') }}" class="btn key_bg5 mt-3">Ajouter un Régime</a>
+        </div>
         {% for message in app.flashes('success') %}
             <div class="alert alert-success mt-4">
                 {{ message }}
@@ -42,10 +42,10 @@
                         <td>{{ regime.description }}</td>
                         <td>{{ regime.publishedAt|date('d/m/Y') }}</td>
                         <td>
-                            <a href="{{ path('app_regime.edit', {'id': regime.id}) }}" class="btn btn-primary">edit</a>
+                            <a href="{{ path('app_regime.edit', {'id': regime.id}) }}" class="btn key_bg4">edit</a>
                         </td>
                         <td>
-                            <a href="{{ path('app_regime.delete', {'id': regime.id}) }}" class="btn btn-danger">delete</a>
+                            <a href="{{ path('app_regime.delete', {'id': regime.id}) }}" class="btn key_bg5">delete</a>
                         </td>
                     </tr>
                 {% endfor %}

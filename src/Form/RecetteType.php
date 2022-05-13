@@ -165,7 +165,7 @@ class RecetteType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary mt-4 mb-4'
+                    'class' => 'btn mt-4 mb-4 key_bg5'
                 ],
                 'label' => 'Ajouter'
             ])

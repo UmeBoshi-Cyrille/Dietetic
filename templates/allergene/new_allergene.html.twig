@@ -3,8 +3,8 @@
 {% block title %}Nouveau Allergène{% endblock %}
 
 {% block main %}
-    <div class="container">
-        <a href="{{ path('app_allergene') }}" class="btn btn-primary mt-4">Retour à l'index</a>
+    <div class="container key_bg2 p-5 pt-4 mt-4">
+        <a href="{{ path('app_allergene') }}" class="btn key_bg5 mt-4">Retour à l'index</a>
         <h1 class="mt-4">Ajout d'un Allergène</h1>
 
         {{ form_start(newAllergeneForm) }}
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group d-flex justify-content-end">
                 {{ form_row(newAllergeneForm.submit) }}
             </div>
 

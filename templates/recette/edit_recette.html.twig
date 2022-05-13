@@ -3,8 +3,8 @@
 {% block title %}Edition recette{% endblock %}
 
 {% block main %}
-    <div class="container">
-        <a href="{{ path('app_recettesAdmin') }}" class="btn btn-primary mt-4">Retour à l'index</a>
+    <div class="container key_bg2 p-5 pt-0">
+        <a href="{{ path('app_recettesAdmin') }}" class="btn key_bg5 mt-4">Retour à l'index</a>
         <h1 class="mt-4">Edition d'une recette</h1>
 
         {{ form_start(editRecetteForm) }}
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group d-flex justify-content-end">
                 {{ form_row(editRecetteForm.submit) }}
             </div>
 

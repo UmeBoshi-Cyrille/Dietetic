@@ -3,14 +3,14 @@
 {% block title %}Profil utilisateur{% endblock %}
 
 {% block main %}
-    <div class="container">
-        <a href="{{ path('app_user') }}" class="btn btn-primary mt-4">Retour à l'accueil</a>
+    <div class="container key_bg2 p-5 pt-0">
+        <a href="{{ path('app_patients') }}" class="btn key_bg5 mt-4">Retour</a>
         <h1 class="mt-4">Informations du compte utilisateur de {{ patient.firstname }} {{ patient.lastname }}</h1>
 
         <div class="container-fluid d-flex flex-row">
             <ul class="container-fluid">
-                <li class="mt-4 border p-2">Prénom : {{ patient.firstname }}</li>
-                <li class="mt-4 border p-2">Nom : {{ patient.lastname }}</li>
+                <li class="mt-4 border p-2">Prénom : {{ patient.firstname|capitalize }}</li>
+                <li class="mt-4 border p-2">Nom : {{ patient.lastname|capitalize }}</li>
                 <li class="mt-4 border p-2">Email : {{ patient.email }}</li>
                 <li class="mt-4 border p-2">
                     Allergènes : 
@@ -26,9 +26,9 @@
                 </li>
             </ul>
         </div>
-        <div class="container-fluid">
-            <a href="{{ path('app_accountEdit', {'id': patient.id}) }}" class="btn btn-primary">edit</a>
-            <a href="{{ path('app_accountDelete', {'id': patient.id}) }}" class="btn btn-danger">delete</a>
+        <div class="container d-flex justify-content-end">
+            <a href="{{ path('app_accountEdit', {'id': patient.id}) }}" class="btn key_bg4 me-3">edit</a>
+            <a href="{{ path('app_accountDelete', {'id': patient.id}) }}" class="btn key_bg5">delete</a>
         </div>
     </div>
 {% endblock %}

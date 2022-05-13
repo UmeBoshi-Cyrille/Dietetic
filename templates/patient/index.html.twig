@@ -4,10 +4,10 @@
 
 {% block main %}
     
-    <div class="container mt-4">
+    <div class="container mt-4 key_bg2 p-5 pt-0">
         <h1>Les comptes utilisateurs</h1>
 
-        <a href="{{ path('app_registration') }}" class="btn btn-primary mt-3 mb-3">Ajouter un compte</a>
+        <a href="{{ path('app_registration') }}" class="btn key_bg5 mt-3 mb-3">Ajouter un compte</a>
 
         {% for message in app.flashes('success') %}
             <div class="alert alert-success mt-4">
@@ -38,19 +38,19 @@
             </thead>
             <tbody>
                 {% for patient in patients %}
-                    <tr class="table-info">
+                    <tr class="table key_bg1">
                         <th scope="row">{{ patient.id }}</th>
                         <td>{{ patient.firstname }}</td>
                         <td>{{ patient.lastname }}</td>
                         <td>{{ patient.createdAt|date('d/m/Y') }}</td>
                         <td>
-                            <a href="{{ path('app_account', {'id': patient.id}) }}" class="btn btn-primary">Read</a>
+                            <a href="{{ path('app_account', {'id': patient.id}) }}" class="btn key_bg4">Read</a>
                         </td>
                         <td>
-                            <a href="{{ path('app_accountEdit', {'id': patient.id}) }}" class="btn btn-primary">edit</a>
+                            <a href="{{ path('app_accountEdit', {'id': patient.id}) }}" class="btn key_bg4">edit</a>
                         </td>
                         <td>
-                            <a href="{{ path('app_accountDelete', {'id': patient.id}) }}" class="btn btn-danger">delete</a>
+                            <a href="{{ path('app_accountDelete', {'id': patient.id}) }}" class="btn key_bg5">delete</a>
                         </td>
                     </tr>
                 {% endfor %}

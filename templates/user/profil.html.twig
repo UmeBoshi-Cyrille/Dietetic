@@ -3,11 +3,15 @@
 {% block title %}Profil utilisateur{% endblock %}
 
 {% block main %}
-    <div class="container">
-        <a href="{{ path('app_user') }}" class="btn btn-primary mt-4">Retour à l'accueil</a>
+    <div class="container key_bg2 mt-4 p-5 pt-4">
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_admin') }}" class="btn key_bg5 mt-4">Retour à l'accueil</a>
+        {% elseif is_granted('ROLE_USER') %}
+            <a href="{{ path('app_user') }}" class="btn key_bg5 mt-4">Retour à l'accueil</a>
+        {% endif %}
         <h1 class="mt-4">Votre profil Utilisateur</h1>
 
-        <div class="container-fluid d-flex flex-row">
+        <div class="container-fluid d-flex flex-row key_bg3">
             <div class="container-fluid">
                 <h2 class="mt-4">Votre identité </h2>
                 <h4 class="mt-4">Votre Nom : {{ app.user.lastname }}</h4>
@@ -15,22 +19,22 @@
             </div>
             <div class="d-grid gap-2">
                 {% if is_granted('ROLE_USER') %}
-                    <a class="btn btn-lg btn-primary h-50 d-flex align-items-center align-self-center" href="{{ path('app_profilEdit', {id: app.user.id}) }}"><span>Modifier</span></a>
+                    <a class="btn btn-lg key_bg5 h-50 d-flex align-items-center align-self-center" href="{{ path('app_profilEdit', {id: app.user.id}) }}"><span>Modifier</span></a>
                 {% elseif is_granted('ROLE_ADMIN') %}
-                    <a class="btn btn-lg btn-primary h-50 d-flex align-items-center align-self-center" href="{{ path('app_adminEdit', {id: app.user.id}) }}"><span>Modifier</span></a>
+                    <a class="btn btn-lg key_bg5 h-50 d-flex align-items-center align-self-center" href="{{ path('app_adminEdit', {id: app.user.id}) }}"><span>Modifier</span></a>
                 {% endif %}
             </div>
         </div>
-        <div class="container-fluid d-flex flex-row mt-4 mb-4">
+        <div class="container-fluid d-flex flex-row mt-4 mb-4 key_bg3">
             <div class="container-fluid">
                 <h2 class="mt-4">Votre mot de passe </h2>
                 <h4 class="mt-4 mb-4">Votre mot de passe : ********* </h4>
             </div>
             <div class="d-grid gap-2">
                 {% if is_granted('ROLE_USER') %}
-                    <a class="btn btn-lg btn-primary h-50 d-flex align-items-center align-self-center" href="{{ path('app_password', {id: app.user.id}) }}"><span>Modifier</span></a>
+                    <a class="btn btn-lg key_bg5 h-50 d-flex align-items-center align-self-center" href="{{ path('app_password', {id: app.user.id}) }}"><span>Modifier</span></a>
                 {% elseif is_granted('ROLE_ADMIN') %}
-                    <a class="btn btn-lg btn-primary h-50 d-flex align-items-center align-self-center" href="{{ path('app_adminPassword', {id: app.user.id}) }}"><span>Modifier</span></a>
+                    <a class="btn btn-lg key_bg5 h-50 d-flex align-items-center align-self-center" href="{{ path('app_adminPassword', {id: app.user.id}) }}"><span>Modifier</span></a>
                 {% endif %}
             </div>
         </div>

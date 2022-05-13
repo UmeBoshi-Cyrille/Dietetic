@@ -1,0 +1,75 @@
+.theme-light {
+  --bg-key1: #dee2ff;
+  --bg-key2: #feeafa;
+  --bg-key3: #efd3d7;
+  --bg-key4: #cbc0d3;
+  --bg-key5: #8e9aaf;
+  --bg-whitedark: #edf6f9;
+  --bg-darkwhite: #222324;
+  --font-darkwhite: #00070a;
+  --font-whitedark: #edf6f9;
+}
+
+.theme-dark {
+  --bg-key1: #ae759f;
+  --bg-key2: #d8b4e2;
+  --bg-key3: #bc96e6;
+  --bg-key4: #55286f;
+  --bg-key5: #210b2c;
+  --bg-whitedark: #222324;
+  --bg-darkwhite: #edf6f9;
+  --font-darkwhite: #edf6f9;
+  --font-whitedark: #00070a;
+}
+
+.key_bg1 {
+  background-color: #dee2ff;
+}
+.key_bg2 {
+  background-color: #feeafa;
+}
+.key_bg3 {
+  background-color: #efd3d7;
+}
+.key_bg4 {
+  background-color: #cbc0d3;
+}
+.key_bg5 {
+  background-color: #8e9aaf;
+}
+.key_bgwd {
+  background-color: #edf6f9;
+}
+.key_bgdw {
+  background-color: #222324;
+}
+
+/* ----- end COLOR BG CLASS ----- */
+
+/* ----- COLOR FONT CLASS ----- */
+
+.key_ftw {
+  color: #edf6f9;
+}
+
+.key_ftd {
+  color: #222324;
+}
+
+/* ----- end COLOR FONT CLASS ----- */
+
+.header_img {
+  max-width: 100%;
+  height: 50px;
+  /* background-image: url("../images/outilsCuisine.png"); */
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+}
+
+body,
+footer {
+  background-image: url("../images/outilsCuisine.png");
+}

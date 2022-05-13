@@ -3,7 +3,7 @@
 {% block title %}Connexion{% endblock %}
 
 {% block main %}
-<div class="container">
+<div class="container key_bg2 mt-4 p-5 pt-4">
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -36,7 +36,7 @@
             </div>
         #}
 
-        <button class="btn btn-lg btn-primary mt-4 mb-4" type="submit">
+        <button class="btn btn-lg key_bg5 mt-4 mb-4" type="submit">
             Se Connecter
         </button>
     </form>
