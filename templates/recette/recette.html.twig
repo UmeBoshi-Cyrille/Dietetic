@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recette {{ recipe.name }} {% endblock %}
+
+{% block main %}
+    <div class="container">
+        <a href="{{ path('app_accueil') }}" class="btn btn-primary mt-4">Retour à l'accueil</a>
+        <h1 class="mt-4">{{ recipe.name }}</h1>
+        <span>Créée le {{ recipe.publishedAt|date('d/m/Y') }}</span>
+        <ul class="container-fluid">
+            <li class="mt-4">
+                <ul class="container-fluid d-flex row-cols-4">
+                    <li class="">
+                        {% if recipe.preparationTime %}
+                            <span>Temps de préparation : 
+                            {{ recipe.preparationTime }}
+                            </span>
+                        {% else %}
+                            <span>Temps de préparation : Non renseigné</span>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if recipe.restTime %}
+                            <span>Temps de repos : 
+                            {{ recipe.restTime }}
+                            </span>
+                        {% else %}
+                            <span>Temps de repos : Non renseigné</span>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if recipe.cookingTime %}
+                            <span>Temps de cuisson : 
+                            {{ recipe.cookingTime }}
+                            </span>
+                        {% else %}
+                            <span>Temps de cuisson : Non renseigné</span>
+                        {% endif %}
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-4 border border-3 p-4">
+                <h4>Description</h4>
+                <p>{{ recipe.description }}</p>
+            </li>
+            <li class="mt-4">
+                <h4>Allergènes</h4>
+                {% for allergene in recipe.allergenes %}
+                    {{ allergene }}
+                {% endfor %}
+            </li>
+            <li class="mt-4">
+                <h4>Régimes</h4>
+                {% for regime in recipe.regimes %}
+                    {{ regime }}
+                {% endfor %}
+            </li>
+            
+            <li class="mt-4">
+                <h4>Liste des ingrédients</h4>
+                {% for ingredient in recipe.ingredients %}
+                    {{ ingredient }}
+                {% endfor %}
+            </li>
+            <li class="mt-4 border border-4 p-4">
+                <h4>Les étapes</h4>
+                <p>{{ recipe.step }}</p>
+            </li>
+        </ul>    
+    </div>
+{% endblock %}

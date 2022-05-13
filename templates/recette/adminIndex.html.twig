@@ -15,11 +15,11 @@
             </div>
         {% endfor %}
 
-        {% if not recettes.items is same as ([]) %}
+        {% if not recettesAdmin.items is same as ([]) %}
             <div class="count mt-4">
             <h4>
                 Il y a 
-                {{ recettes.getTotalItemCount }}
+                {{ recettesAdmin.getTotalItemCount }}
                 recettes au total.
             </h4>
             </div>
@@ -36,24 +36,24 @@
                 </tr>
             </thead>
             <tbody>
-                {% for recette in recettes %}
+                {% for recette in recettesAdmin %}
                     <tr class="table-info">
                         <th scope="row">{{ recette.id }}</th>
                         <td>{{ recette.name }}</td>
                         <td>{{ recette.description }}</td>
                         <td>{{ recette.publishedAt|date('d/m/Y') }}</td>
                         <td>
-                            <a href="{{ path('app_recette.edit', {'id': recette.id}) }}" class="btn btn-primary">edit</a>
+                            <a href="{{ path('app_recetteEdit', {'id': recette.id}) }}" class="btn btn-primary">edit</a>
                         </td>
                         <td>
-                            <a href="{{ path('app_recette.delete', {'id': recette.id}) }}" class="btn btn-danger">delete</a>
+                            <a href="{{ path('app_recetteDelete', {'id': recette.id}) }}" class="btn btn-danger">delete</a>
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
             </table>
             <div class="navigation d-flex justify-content-center mt-4 mb-4">
-                {{ knp_pagination_render(recettes) }}
+                {{ knp_pagination_render(recettesAdmin) }}
             </div>
         {% else %}
             <h4>

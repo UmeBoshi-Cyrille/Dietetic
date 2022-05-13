@@ -26,7 +26,7 @@ class RecetteController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    #[Route('/recette', name: 'app_recette', methods: ['GET'])]
+    #[Route('/recettes', name: 'app_recettesAdmin', methods: ['GET'])]
     public function index(
         RecetteRepository $recetteRepository, 
         PaginatorInterface $paginator, 
@@ -39,7 +39,7 @@ class RecetteController extends AbstractController
         );
 
         return $this->render('recette/adminIndex.html.twig', [
-            'recettes' => $recette
+            'recettesAdmin' => $recette
         ]);
     }
 
@@ -71,7 +71,7 @@ class RecetteController extends AbstractController
                 'Nouvelle recette ajoutée avec succès !'
             );
 
-            return $this->redirectToRoute('app_recette');
+            return $this->redirectToRoute('app_recettesAdmin');
         }
 
         return $this->render('recette/new_recette.html.twig', [
@@ -87,8 +87,8 @@ class RecetteController extends AbstractController
      * @return Response
      */
     #[Security("is_granted('ROLE_ADMIN')")]
-    #[Route('/recette/edit/{id}', name: 'app_recette.edit', methods: ['GET', 'POST'])]
-    public function editrecette(Recette $recette,
+    #[Route('/recette/edit/{id}', name: 'app_recetteEdit', methods: ['GET', 'POST'])]
+    public function editRecette(Recette $recette,
         Request $request,
         EntityManagerInterface $entityManager): Response
     {
@@ -106,7 +106,7 @@ class RecetteController extends AbstractController
                 'La recette a été modifiée avec succès !'
             );
 
-            return $this->redirectToRoute('app_recette');
+            return $this->redirectToRoute('app_recettesAdmin');
         }
 
         return $this->render('recette/edit_recette.html.twig', [
@@ -114,8 +114,8 @@ class RecetteController extends AbstractController
         ]);
     }
     
-    #[Route('recette/delete/{id}', name: 'app_recette.delete', methods: ['GET'])]
-    public function deleterecette(Recette $recette,
+    #[Route('recette/delete/{id}', name: 'app_recetteDelete', methods: ['GET'])]
+    public function deleteRecette(Recette $recette,
          EntityManagerInterface $entityManager): Response
     {
         if(!$recette) {
@@ -133,6 +133,6 @@ class RecetteController extends AbstractController
             'La recette a été supprimée avec succès !'
         );
 
-        return $this->redirectToRoute('app_recette');
+        return $this->redirectToRoute('app_recettesAdmin');
     } 
 }

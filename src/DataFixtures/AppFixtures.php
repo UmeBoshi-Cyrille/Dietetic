@@ -65,12 +65,13 @@ class AppFixtures extends Fixture
         }
 
         // Recipes
-        for ($j = 0; $j <= 10; $j++) {
+        for ($j = 0; $j <= 100; $j++) {
             $recette = new Recette();
             $recette->setName($this->faker->word())
-                ->setDescription($this->faker->text())
+                ->setDescription($this->faker->text(300))
                 ->setPreparationTime(mt_rand(5, 60), 'minutes')
-                ->setStep($this->faker->text());
+                ->setStep($this->faker->text(1200))
+                ->setIsPublished(mt_rand(0, 1) == 1 ? true : false);
             
             for ($k = 0; $k < mt_rand(5, 15); $k++) {
                 $recette->addIngredient($ingredients[mt_rand(0, count($ingredients) - 1)]);

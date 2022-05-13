@@ -9,12 +9,17 @@
             {{ message }}
         </div>
     {% endfor %}
+    <div class="container-fluid">
+        <img src="" alt="" class="w-100">
+    </div>
     <div class="jumbotron">
-        <h1 class="display-4">Bienvenue Sandrine Coupart</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <h1 class="display-4 text-center">Bienvenue Sandrine Coupart</h1>
+        <p class="lead text-center">sur le panel d'administration de votre site.</p>
         <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg mt-4 mb-4" href="{{ path('app_logout') }}" role="button">Déconnexion</a>
+        <p class="text-center">It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-primary btn-lg mt-4 mb-4" href="{{ path('app_logout') }}" role="button">Déconnexion</a>
+        </div>
     </div>
 </div>
 
