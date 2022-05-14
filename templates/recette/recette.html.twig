@@ -3,66 +3,77 @@
 {% block title %}Recette {{ recipe.name }} {% endblock %}
 
 {% block main %}
-    <div class="container key_bg2">
+    <div class="container key_bg2 p-5 mb-4 mt-4 pt-4">
         <a href="{{ path('app_accueil') }}" class="btn key_bg5 mt-4 ms-2">Retour à l'accueil</a>
-        <h1 class="mt-4">{{ recipe.name|capitalize }}</h1>
-        <span>Créée le {{ recipe.publishedAt|date('d/m/Y') }}</span>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="d-flex justify-content-between">
+            <h1 class="mt-4">{{ recipe.name|capitalize }}</h1>
+            <div class="d-flex flex-column me-2 mt-4">
+                <span>Créée le {{ recipe.publishedAt|date('d/m/Y') }}</span>
+                <span class="me-2">Moyenne : {{ recipe.average|number_format }}/5</span>
+                <div class="mark key_bg2">{{ form(markForm) }}</div>
+            </div>
+        </div>
         <ul class="container-fluid">
             <li class="mt-4">
                 <ul class="container-fluid d-flex row-cols-4">
-                    <li class="">
+                    <li>
                         {% if recipe.preparationTime %}
-                            <span>Temps de préparation : 
-                            {{ recipe.preparationTime }}
+                            <span class="badge bg-secondary">Temps de préparation : 
+                            {{ recipe.preparationTime }} min
                             </span>
                         {% else %}
-                            <span>Temps de préparation : Non renseigné</span>
+                            <span class="badge bg-secondary">Temps de préparation : Non renseigné</span>
                         {% endif %}
                     </li>
                     <li>
                         {% if recipe.restTime %}
-                            <span>Temps de repos : 
-                            {{ recipe.restTime }}
+                            <span class="badge bg-secondary">
+                                Temps de repos : 
+                                {{ recipe.restTime }} min
                             </span>
                         {% else %}
-                            <span>Temps de repos : Non renseigné</span>
+                            <span class="badge bg-secondary">Temps de repos : Non renseigné</span>
                         {% endif %}
                     </li>
                     <li>
                         {% if recipe.cookingTime %}
-                            <span>Temps de cuisson : 
-                            {{ recipe.cookingTime }}
+                            <span class="badge bg-secondary">Temps de cuisson : 
+                            {{ recipe.cookingTime }} min
                             </span>
                         {% else %}
-                            <span>Temps de cuisson : Non renseigné</span>
+                            <span class="badge bg-secondary">Temps de cuisson : Non renseigné</span>
                         {% endif %}
                     </li>
                 </ul>
             </li>
-            <li class="mt-4 border border-3 p-4">
+            <li class="mt-4 border border-3 p-4 key_bg3">
                 <h4>Description</h4>
                 <p>{{ recipe.description }}</p>
             </li>
             <li class="mt-4">
                 <h4>Allergènes</h4>
                 {% for allergene in recipe.allergenes %}
-                    {{ allergene }}
+                    <span class="badge bg-danger">{{ allergene }}</span>
                 {% endfor %}
             </li>
             <li class="mt-4">
                 <h4>Régimes</h4>
                 {% for regime in recipe.regimes %}
-                    {{ regime }}
+                    <span class="badge bg-info">{{ regime }}</span>
                 {% endfor %}
             </li>
-            
-            <li class="mt-4">
+            <li class="mt-4 key_bg3 p-4">
                 <h4>Liste des ingrédients</h4>
                 {% for ingredient in recipe.ingredients %}
-                    {{ ingredient }}
+                    <span class="badge bg-secondary">{{ ingredient }}</span>
                 {% endfor %}
             </li>
-            <li class="mt-4 border border-4 p-4">
+            <li class="mt-4 border border-4 p-4 key_bg3">
                 <h4>Les étapes</h4>
                 <p>{{ recipe.step }}</p>
             </li>

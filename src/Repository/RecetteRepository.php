@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Recette;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
@@ -63,6 +64,21 @@ class RecetteRepository extends ServiceEntityRepository
                 $queryBuilder->setMaxResults($nbRecipes);
             }
             
+            return $queryBuilder->getQuery()
+            ->getResult();
+    }
+
+    public function findSpecificRecipe(
+        ?int $nbRecipes): array
+    {
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->where('c.regimes = $user.regimes && c.allergenes != $user.allergenes')
+            ->orderBy('c.publishedAt', 'DESC');
+
+            if ($nbRecipes !== 0 || $nbRecipes !== null) {
+                $queryBuilder->setMaxResults($nbRecipes);
+            }
+
             return $queryBuilder->getQuery()
             ->getResult();
     }

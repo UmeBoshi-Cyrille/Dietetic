@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Allergene;
 use App\Entity\Ingredient;
+use App\Entity\Mark;
 use App\Entity\Recette;
 use App\Entity\Regime;
 use App\Entity\User;
@@ -65,6 +66,7 @@ class AppFixtures extends Fixture
         }
 
         // Recipes
+        $recettes = [];
         for ($j = 0; $j <= 100; $j++) {
             $recette = new Recette();
             $recette->setName($this->faker->word())
@@ -83,10 +85,13 @@ class AppFixtures extends Fixture
                 $recette->addRegime($regimes[mt_rand(0, count($regimes) - 1)]);
             }
 
+            $recettes[] = $recette;
+
             $manager->persist($recette);
         }
 
         // User
+        $users = [];
         for ($i =0 ; $i < 10; $i++) {
             $user = new User();
             $user->setLastname($this->faker->lastName())
@@ -108,8 +113,23 @@ class AppFixtures extends Fixture
                 $user->addRegime($regimes[mt_rand(0, count($regimes) - 1)]);
             }
 
+            $users[] = $user;
+
             $manager->persist($user);
         }
+
+        // Marks
+        foreach ($recettes as $recette) {
+            for ($i = 0; $i < mt_rand(0, 4); $i++) {
+                $mark = new Mark();
+                $mark->setMark(mt_rand(1, 5))
+                    ->setUser($users[mt_rand(0, count($users) - 1)])
+                    ->setRecipe($recette);
+
+                $manager->persist($mark);
+            }
+        }
+
 
         $manager->flush();
     }

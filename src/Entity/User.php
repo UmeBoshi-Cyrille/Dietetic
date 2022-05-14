@@ -62,12 +62,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotNull()]
     private ?DateTimeImmutable $updatedAt;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Mark::class, orphanRemoval: true)]
+    private $marks;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
         $this->allergenes = new ArrayCollection();
         $this->regimes = new ArrayCollection();
+        $this->marks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -252,6 +256,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Mark>
+     */
+    public function getMarks(): Collection
+    {
+        return $this->marks;
+    }
+
+    public function addMark(Mark $mark): self
+    {
+        if (!$this->marks->contains($mark)) {
+            $this->marks[] = $mark;
+            $mark->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMark(Mark $mark): self
+    {
+        if ($this->marks->removeElement($mark)) {
+            // set the owning side to null (unless already changed)
+            if ($mark->getUser() === $this) {
+                $mark->setUser(null);
+            }
+        }
 
         return $this;
     }
