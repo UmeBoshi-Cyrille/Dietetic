@@ -22,47 +22,75 @@
             <a class="btn key_bg5 btn-lg mt-4 mb-4" href="{{ path('app_login') }}" role="button">Connexion</a>
         </div>
     </div>
-    <div class="container-fluid d-flex flex-row flex-wrap justify-content-center mt-4 mb-5">
-        <div class="card border-primary mb-3 me-3" style="max-width: 20rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Primary card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+
+    <div class="container mt-4 key_bg3 p-3 mb-4">
+        <div class="container-fluid d-flex justify-content-between">
+            <h2 class="mt-4">Dernières recettes</h2>
+            <a href="{{ path('app_recettesPublic') }}" class="btn btn-sm d-flex key_bg3 key_ftw pt-0">
+                <span class="align-self-center key_ftd">Consulter les recettes</span>
+            </a>
         </div>
-        <div class="card border-primary mb-3 me-3" style="max-width: 20rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Primary card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+        <div class="container-fluid d-flex justify-content-center flex-wrap">
+            {% for recipe in recettesPublic %}
+                <div class="card border-primary mb-3 mt-4 me-3 key_bg1 w-50" style="max-width: 20rem; max-height: 200px;">
+                    <div class="card-header d-flex justify-content-between">
+                        <strong>{{ recipe.name|capitalize }}</strong>
+                        <a href="{{ path('app_recette', {'id' : recipe.id }) }}" class="btn key_bg5 mb-1">Consulter</a>
+                    </div>
+                    <div class="card-body overflow-auto">
+                        <h4 class="card-title">Description</h4>
+                        <p class="card-text">{{ recipe.description }}</p>
+                    </div>
+                    
+                </div>
+            {% endfor %}
         </div>
-        <div class="card border-primary mb-3 me-3" style="max-width: 20rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Primary card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+
+    <div class="container mt-4 key_bg4 p-4 mb-4">
+        <h2 class="mt-4">Les services du cabinets</h2>
+        <div class="container-fluid d-flex flex-wrap justify-content-center mt-4 mb-5">
+            <div class="card border-primary key_bg1 mb-3 me-3" style="max-width: 20rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h4 class="card-title">Primary card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
             </div>
-        </div>
-        <div class="card border-primary mb-3 me-3" style="max-width: 20rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Primary card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="card border-primary key_ftw key_bg5 mb-3 me-3" style="max-width: 20rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h4 class="card-title">Primary card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
             </div>
-        </div>
-        <div class="card border-primary mb-3 me-3" style="max-width: 20rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Primary card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="card border-primary key_ftd key_bg1 mb-3 me-3" style="max-width: 20rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h4 class="card-title">Primary card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
             </div>
-        </div>
-        <div class="card border-primary mb-3" style="max-width: 20rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Primary card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="card border-primary key_ftw key_bg5 mb-3 me-3" style="max-width: 20rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h4 class="card-title">Primary card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card border-primary key_ftd key_bg1 mb-3 me-3" style="max-width: 20rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h4 class="card-title">Primary card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card border-primary key_ftw key_bg5 mb-3" style="max-width: 20rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h4 class="card-title">Primary card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
             </div>
         </div>
     </div>

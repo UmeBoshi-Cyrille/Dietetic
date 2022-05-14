@@ -111,7 +111,8 @@ class RecetteType extends AbstractType
                 'constraints' => [
                     new Assert\Positive(),
                     new Assert\LessThan(90),
-                ]
+                ],
+                'required' => false
             ])
             ->add('cookingTime', IntegerType::class, [
                 'attr' => [
@@ -126,7 +127,8 @@ class RecetteType extends AbstractType
                 'constraints' => [
                     new Assert\Positive(),
                     new Assert\LessThan(90),
-                ]
+                ],
+                'required' => false
             ])
             ->add('ingredients', EntityType::class, [
                 'class' => Ingredient::class,
@@ -161,7 +163,8 @@ class RecetteType extends AbstractType
                 'label' => 'Rendre public ?',
                 'label_attr' => [
                     'class' => 'form-check-label'
-                ]
+                ],
+                'required' => false
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [

@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Recette;
+use App\Repository\RecetteRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -10,10 +12,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AccueilController extends AbstractController
 {
     #[Route('/', name: 'app_accueil', methods: ['GET'])]
-    public function index(): Response
+    public function index(
+        RecetteRepository $recetteRepository
+        ): Response
     {
         return $this->render('accueil/home.html.twig', [
-            'controller_name' => 'AccueilController',
+            'recettesPublic' => $recetteRepository->findPublicRecipe(3)
         ]);
     }
 

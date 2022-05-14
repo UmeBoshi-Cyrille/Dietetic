@@ -9,7 +9,7 @@
 
         {{ form_start(newRecetteForm) }}
             <div class="form-group">
-                {{ form_label(newRecetteForm.name|capitalize)}}
+                {{ form_label(newRecetteForm.name)}}
                 {{ form_widget(newRecetteForm.name) }}
                 <div class="form-error">
                     {{ form_errors(newRecetteForm.name) }}

@@ -59,7 +59,7 @@ class RecetteRepository extends ServiceEntityRepository
             ->where('r.isPublished = 1')
             ->orderBy('r.publishedAt', 'DESC');
             
-            if ($nbRecipes === 0 || !$nbRecipes === null) {
+            if ($nbRecipes !== 0 || !$nbRecipes !== null) {
                 $queryBuilder->setMaxResults($nbRecipes);
             }
             
