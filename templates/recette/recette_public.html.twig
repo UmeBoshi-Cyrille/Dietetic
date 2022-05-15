@@ -14,9 +14,9 @@
         {% endfor %}
             <h1 class="mt-4 key_bg2">{{ publicRecipe.name|capitalize }}</h1>
         <div class="d-flex justify-content-between flex-wrap">
-            <div class="mt-4 show-image">
+            {# <div class="mt-4 show-image">
                 <img src="{{ vich_uploader_asset(publicRecipe, 'imageFile') }}" alt="Image de la recette">
-            </div>
+            </div> #}
             <div class="d-flex flex-column me-2 mt-4">
                 <span>Créée le {{ publicRecipe.publishedAt|date('d/m/Y') }}</span>
                 <span class="me-2">Moyenne : {{ publicRecipe.average|number_format }}/5</span>
