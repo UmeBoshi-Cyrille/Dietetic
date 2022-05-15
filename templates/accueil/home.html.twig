@@ -35,7 +35,7 @@
                 <div class="card border-primary mb-3 mt-4 me-3 key_bg1 w-50" style="max-width: 20rem; max-height: 200px;">
                     <div class="card-header d-flex justify-content-between">
                         <strong>{{ recipe.name|capitalize }}</strong>
-                        <a href="{{ path('app_recette', {'id' : recipe.id }) }}" class="btn key_bg5 mb-1">Consulter</a>
+                        <a href="{{ path('app_recettePublic', {'id' : recipe.id }) }}" class="btn key_bg5 mb-1">Consulter</a>
                     </div>
                     <div class="card-body overflow-auto">
                         <h4 class="card-title">Description</h4>
