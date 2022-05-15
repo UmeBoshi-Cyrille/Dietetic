@@ -7,7 +7,7 @@
         <a href="{{ path('app_profil', { id: app.user.id }) }}" class="btn key_bg5 mt-4">Retour au profil</a>
         <h1 class="mt-4">Formulaire de modification du profil utilisateur</h1>
 
-        {{ form_start(profilForm) }}
+        {{ form_start(profilForm, {'attr': {'method': 'post'}}) }}
             <div class="form-group">
                 {{ form_label(profilForm.lastname)}}
                 {{ form_widget(profilForm.lastname) }}

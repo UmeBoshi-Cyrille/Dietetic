@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h1>Page not found</h1>
+    <img src="{{ asset('assets/images/oursError.jpg') }}" alt="Ours" class="w-75">
+    <p>
+        The requested page couldn't be located. Checkout for any URL
+        misspelling or <a href="{{ path('app_accueil') }}">return to the homepage</a>.
+    </p>
+{% endblock %}

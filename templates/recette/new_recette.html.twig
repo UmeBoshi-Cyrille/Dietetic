@@ -3,11 +3,13 @@
 {% block title %}Nouvelle recette{% endblock %}
 
 {% block main %}
-    <div class="container key_bg2">
-        <a href="{{ path('app_recettesAdmin') }}" class="btn btn-primary mt-4">Retour à l'index</a>
+    <div class="container key_bg2 mt-4">
+        <div class="d-flex justify-content-end me-2">
+            <a href="{{ path('app_recettesAdmin') }}" class="btn key_bg5 mt-4">Retour à l'index</a>
+        </div>
         <h1 class="mt-4">Ajout d'une recette</h1>
 
-        {{ form_start(newRecetteForm) }}
+        {{ form_start(newRecetteForm, {'attr': {'method': 'post', 'enctype': 'multipart/form-data'}}) }}
             <div class="form-group">
                 {{ form_label(newRecetteForm.name)}}
                 {{ form_widget(newRecetteForm.name) }}
@@ -28,8 +30,10 @@
                 <div>
                     {% for regime in newRecetteForm.regimes %}
                         <div class="d-inline-block">
-                            {{ form_label(regime) }}
-                            {{ form_widget(regime, { 'attr': { 'class': 'me-2'}}) }}
+                            <span class="badge bg-danger">
+                                {{ form_label(regime) }}
+                                {{ form_widget(regime, { 'attr': { 'class': 'me-2'}}) }}
+                            </span>
                         </div>
                     {% endfor %}
                 </div>
@@ -42,8 +46,10 @@
                 <div>
                     {% for allergene in newRecetteForm.allergenes %}
                         <div class="d-inline-block">
-                            {{ form_label(allergene) }}
-                            {{ form_widget(allergene, { 'attr': { 'class': 'me-2'}}) }}
+                            <span class="badge bg-danger">
+                                {{ form_label(allergene) }}
+                                {{ form_widget(allergene, { 'attr': { 'class': 'me-2'}}) }}
+                            </span>
                         </div>
                     {% endfor %}
                 </div>
@@ -77,8 +83,10 @@
                 <div>
                     {% for ingredient in newRecetteForm.ingredients %}
                         <div class="d-inline-block">
-                            {{ form_label(ingredient) }}
-                            {{ form_widget(ingredient, { 'attr': { 'class': 'me-2'}}) }}
+                            <span class="badge bg-secondary">
+                                {{ form_label(ingredient) }}
+                                {{ form_widget(ingredient, { 'attr': { 'class': 'me-2'}}) }}
+                            </span>
                         </div>
                     {% endfor %}
                 </div>
@@ -91,6 +99,13 @@
                 {{ form_widget(newRecetteForm.step) }}
                 <div class="form-error">
                     {{ form_errors(newRecetteForm.step) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(newRecetteForm.imageFile)}}
+                {{ form_widget(newRecetteForm.imageFile) }}
+                <div class="form-error">
+                    {{ form_errors(newRecetteForm.imageFile) }}
                 </div>
             </div>
             <div class="form-group mt-4">

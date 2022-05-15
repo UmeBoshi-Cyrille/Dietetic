@@ -7,7 +7,7 @@
         <a href="{{ path('app_regime') }}" class="btn key_bg5 mt-4">Retour à l'index</a>
         <h1 class="mt-4">Ajout d'un nouveau Régime</h1>
 
-        {{ form_start(newRegimeForm) }}
+        {{ form_start(newRegimeForm, {'attr': {'method': 'post'}}) }}
             <div class="form-group">
                 {{ form_label(newRegimeForm.name)}}
                 {{ form_widget(newRegimeForm.name) }}

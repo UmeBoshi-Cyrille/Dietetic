@@ -3,7 +3,7 @@
 {% block title %}Connexion{% endblock %}
 
 {% block main %}
-<div class="container key_bg2 mt-4 p-5 pt-4">
+<div class="container key_bg2 mt-4 p-5 pt-4 mb-5">
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>

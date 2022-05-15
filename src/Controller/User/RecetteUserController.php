@@ -42,6 +42,15 @@ class RecetteUserController extends AbstractController
         ]);
     }
 
+    #[Route('/recette/{id}', name: 'app_recettePublic', methods: ['GET'])]
+    public function publicRecipe(Recette $recette
+        ): Response
+    {
+        return $this->render('recette/recette_public.html.twig', [
+            'publicRecipe' => $recette
+        ]);
+    }
+
     /**
      * This function display the list of all recipes
      *
@@ -94,6 +103,7 @@ class RecetteUserController extends AbstractController
         ]);
     }
 
+    #[IsGranted("ROLE_USER")]
     #[Route('/utilisateur/recette/{id}', name: 'app_recette', methods: ['GET', 'POST'])]
     public function userRecipe(Recette $recette,
         Request $request,

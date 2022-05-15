@@ -7,7 +7,7 @@
         <a href="{{ path('app_allergene') }}" class="btn key_bg5 mt-4">Retour à l'index</a>
         <h1 class="mt-4">Ajout d'un Allergène</h1>
 
-        {{ form_start(newAllergeneForm) }}
+        {{ form_start(newAllergeneForm, {'attr': {'method': 'post'}}) }}
             <div class="form-group">
                 {{ form_label(newAllergeneForm.name)}}
                 {{ form_widget(newAllergeneForm.name) }}

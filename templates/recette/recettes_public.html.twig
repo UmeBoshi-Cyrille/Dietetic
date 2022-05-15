@@ -21,7 +21,7 @@
                     <h5 class="mt-3">Description</h5>
                     <p>{{ recipe.description }}</p>
                     <div class="container-fluid d-flex justify-content-end">
-                        <a href="{{ path('app_recette', {'id' : recipe.id }) }}" class="btn key_bg5">Consulter</a>
+                        <a href="{{ path('app_recettePublic', {'id' : recipe.id }) }}" class="btn key_bg5">Consulter</a>
                     </div>
                 </li>
             {% endfor %}

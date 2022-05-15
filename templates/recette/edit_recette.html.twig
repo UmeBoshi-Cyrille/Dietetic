@@ -3,11 +3,13 @@
 {% block title %}Edition recette{% endblock %}
 
 {% block main %}
-    <div class="container key_bg2 p-5 pt-0">
-        <a href="{{ path('app_recettesAdmin') }}" class="btn key_bg5 mt-4">Retour à l'index</a>
+    <div class="container key_bg2 p-5 pt-0 mt-4">
+        <div class="d-flex justify-content-end me-2">
+            <a href="{{ path('app_recettesAdmin') }}" class="btn key_bg5 mt-4">Retour à l'index</a>
+        </div>
         <h1 class="mt-4">Edition d'une recette</h1>
 
-        {{ form_start(editRecetteForm) }}
+        {{ form_start(editRecetteForm, {'attr': {'method': 'post', 'enctype': 'multipart/form-data'}}) }}
             <div class="form-group">
                 {{ form_label(editRecetteForm.name)}}
                 {{ form_widget(editRecetteForm.name) }}
@@ -24,14 +26,32 @@
             </div>
             <div class="form-group">
                 {{ form_label(editRecetteForm.regimes)}}
-                {{ form_widget(editRecetteForm.regimes) }}
+                <div>
+                    {% for regime in editRecetteForm.regimes %}
+                        <div class="d-inline-block">
+                             <span class="badge bg-danger">
+                                {{ form_label(regime) }}
+                                {{ form_widget(regime, { 'attr': { 'class': 'me-2'}}) }}
+                            </span>
+                        </div>
+                    {% endfor %}
+                </div>
                 <div class="form-error">
                     {{ form_errors(editRecetteForm.regimes) }}
                 </div>
             </div>
             <div class="form-group">
                 {{ form_label(editRecetteForm.allergenes)}}
-                {{ form_widget(editRecetteForm.allergenes) }}
+                <div>
+                    {% for allergene in editRecetteForm.allergenes %}
+                        <div class="d-inline-block">
+                            <span class="badge bg-danger">
+                                {{ form_label(allergene) }}
+                                {{ form_widget(allergene, { 'attr': { 'class': 'me-2'}}) }}
+                            </span>
+                        </div>
+                    {% endfor %}
+                </div>
                 <div class="form-error">
                     {{ form_errors(editRecetteForm.allergenes) }}
                 </div>
@@ -59,7 +79,16 @@
             </div>
             <div class="form-group">
                 {{ form_label(editRecetteForm.ingredients)}}
-                {{ form_widget(editRecetteForm.ingredients) }}
+                <div>
+                    {% for ingredient in editRecetteForm.ingredients %}
+                        <div class="d-inline-block">
+                            <span class="badge bg-secondary">
+                                {{ form_label(ingredient) }}
+                                {{ form_widget(ingredient, { 'attr': { 'class': 'me-2'}}) }}
+                            </span>
+                        </div>
+                    {% endfor %}
+                </div>
                 <div class="form-error">
                     {{ form_errors(editRecetteForm.ingredients) }}
                 </div>
@@ -69,6 +98,13 @@
                 {{ form_widget(editRecetteForm.step) }}
                 <div class="form-error">
                     {{ form_errors(editRecetteForm.step) }}
+                </div>
+            </div>
+            <div class="form-group form-image">
+                {{ form_label(editRecetteForm.imageFile)}}
+                {{ form_widget(editRecetteForm.imageFile) }}
+                <div class="form-error">
+                    {{ form_errors(editRecetteForm.imageFile) }}
                 </div>
             </div>
             <div class="form-group mt-4">

@@ -7,7 +7,7 @@
         <a href="{{ path('app_ingredient') }}" class="btn key_bg5 mt-4">Retour à l'index</a>
         <h1 class="mt-4">Edition d'un ingrédient</h1>
         
-        {{ form_start(editIngredientForm) }}
+        {{ form_start(editIngredientForm, {'attr': {'method': 'post'}}) }}
             <div class="form-group">
                 {{ form_label(editIngredientForm.name)}}
                 {{ form_widget(editIngredientForm.name) }}

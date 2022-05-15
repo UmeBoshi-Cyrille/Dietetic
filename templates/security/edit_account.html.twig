@@ -7,7 +7,7 @@
         <a href="{{ path('app_patients') }}" class="btn key_bg5 mt-4">Retour</a>
         <h1 class="mt-4">Formulaire d'inscription de Nouveau Patient</h1>
 
-        {{ form_start(registerForm) }}
+        {{ form_start(registerForm, {'attr': {'method': 'post'}}) }}
             <div class="form-group">
                 {{ form_label(registerForm.lastname)}}
                 {{ form_widget(registerForm.lastname) }}

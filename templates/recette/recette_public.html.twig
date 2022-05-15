@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recette {{ recipe.name|capitalize }} {% endblock %}
+{% block title %}Recette {{ publicRecipe.name }} {% endblock %}
 
 {% block main %}
     <div class="container key_bg2 p-5 mb-4 mt-4 pt-4">
@@ -12,43 +12,42 @@
                 {{ message }}
             </div>
         {% endfor %}
-            <h1 class="mt-4 key_bg2">{{ recipe.name|capitalize }}</h1>
+            <h1 class="mt-4 key_bg2">{{ publicRecipe.name|capitalize }}</h1>
         <div class="d-flex justify-content-between flex-wrap">
             <div class="mt-4 show-image">
-                <img src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="Image de la recette">
+                <img src="{{ vich_uploader_asset(publicRecipe, 'imageFile') }}" alt="Image de la recette">
             </div>
             <div class="d-flex flex-column me-2 mt-4">
-                <span>Créée le {{ recipe.publishedAt|date('d/m/Y') }}</span>
-                <span class="me-2">Moyenne : {{ recipe.average|number_format }}/5</span>
-                <div class="mark key_bg2">{{ form(markForm) }}</div>
+                <span>Créée le {{ publicRecipe.publishedAt|date('d/m/Y') }}</span>
+                <span class="me-2">Moyenne : {{ publicRecipe.average|number_format }}/5</span>
             </div>
         </div>
         <ul class="container-fluid">
             <li class="mt-4">
                 <ul class="container-fluid d-flex row-cols-4">
                     <li>
-                        {% if recipe.preparationTime %}
+                        {% if publicRecipe.preparationTime %}
                             <span class="badge bg-secondary">Temps de préparation : 
-                            {{ recipe.preparationTime }} min
+                            {{ publicRecipe.preparationTime }} min
                             </span>
                         {% else %}
                             <span class="badge bg-secondary">Temps de préparation : Non renseigné</span>
                         {% endif %}
                     </li>
                     <li>
-                        {% if recipe.restTime %}
+                        {% if publicRecipe.restTime %}
                             <span class="badge bg-secondary">
                                 Temps de repos : 
-                                {{ recipe.restTime }} min
+                                {{ publicRecipe.restTime }} min
                             </span>
                         {% else %}
                             <span class="badge bg-secondary">Temps de repos : Non renseigné</span>
                         {% endif %}
                     </li>
                     <li>
-                        {% if recipe.cookingTime %}
+                        {% if publicRecipe.cookingTime %}
                             <span class="badge bg-secondary">Temps de cuisson : 
-                            {{ recipe.cookingTime }} min
+                            {{ publicRecipe.cookingTime }} min
                             </span>
                         {% else %}
                             <span class="badge bg-secondary">Temps de cuisson : Non renseigné</span>
@@ -59,29 +58,29 @@
             
             <li class="mt-4 border border-3 p-4 key_bg3">
                 <h4>Description</h4>
-                <p>{{ recipe.description }}</p>
+                <p>{{ publicRecipe.description }}</p>
             </li>
             <li class="mt-4">
                 <h4>Allergènes</h4>
-                {% for allergene in recipe.allergenes %}
+                {% for allergene in publicRecipe.allergenes %}
                     <span class="badge bg-danger">{{ allergene }}</span>
                 {% endfor %}
             </li>
             <li class="mt-4">
                 <h4>Régimes</h4>
-                {% for regime in recipe.regimes %}
+                {% for regime in publicRecipe.regimes %}
                     <span class="badge bg-info">{{ regime }}</span>
                 {% endfor %}
             </li>
             <li class="mt-4 key_bg3 p-4">
                 <h4>Liste des ingrédients</h4>
-                {% for ingredient in recipe.ingredients %}
+                {% for ingredient in publicRecipe.ingredients %}
                     <span class="badge bg-secondary">{{ ingredient }}</span>
                 {% endfor %}
             </li>
             <li class="mt-4 border border-4 p-4 key_bg3">
                 <h4>Les étapes</h4>
-                <p>{{ recipe.step }}</p>
+                <p>{{ publicRecipe.step }}</p>
             </li>
         </ul>    
     </div>
