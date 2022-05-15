@@ -1,10 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Page non trouvée{% endblock %}
+
 {% block main %}
-    <h1>Page not found</h1>
-    <img src="{{ asset('assets/images/oursError.jpg') }}" alt="Ours" class="w-75">
-    <p>
-        The requested page couldn't be located. Checkout for any URL
-        misspelling or <a href="{{ path('app_accueil') }}">return to the homepage</a>.
-    </p>
+    <div class="container d-flex justify-content-center flex-column mt-4 mb-4 key_bg2 p-4">
+        <h1 class="text-center mt-4">Page not found</h1>
+        <h2 class="text-center mt-4 mb-4">
+            The requested page couldn't be located. Checkout for any URL
+            misspelling or <a href="{{ path('app_accueil') }}">return to the homepage</a>.
+        </h2>
+        <div class="d-flex justify-content-center">
+            <img src="{{ asset('assets/images/oursError.jpg') }}" alt="Ours" class="w-75 errorImage mb-4">
+        </div>
+    </div>
 {% endblock %}
