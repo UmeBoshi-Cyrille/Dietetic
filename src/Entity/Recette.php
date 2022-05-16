@@ -29,7 +29,6 @@ class Recette
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $imageName = null;
 
-
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank()]
     #[Assert\Length(min: 2, max: 255)]
