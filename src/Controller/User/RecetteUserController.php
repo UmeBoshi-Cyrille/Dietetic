@@ -77,32 +77,6 @@ class RecetteUserController extends AbstractController
         ]);
     }
 
-    /**
-     * This function display the list of all recipes
-     *
-     * @param RecetteRepository $recetteRepository
-     * @param PaginatorInterface $paginator
-     * @param Request $request
-     * @return Response
-     */
-    #[IsGranted("ROLE_USER")]
-    #[Route('/utilisateur/recettes-specifique', name: 'app_recettesSpecifique', methods: ['GET'])]
-    public function indexSpecific(
-        RecetteRepository $recetteRepository, 
-        PaginatorInterface $paginator, 
-        Request $request
-    ): Response
-    {
-        $recettes = $paginator->paginate(
-            $recetteRepository->findSpecificRecipe(null),
-            $request->query->getInt('page', 1), 5
-        );
-
-        return $this->render('recette/recettes.html.twig', [
-            'specificRecipes' => $recettes
-        ]);
-    }
-
     #[IsGranted("ROLE_USER")]
     #[Route('/utilisateur/recette/{id}', name: 'app_recette', methods: ['GET', 'POST'])]
     public function userRecipe(Recette $recette,
