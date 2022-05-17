@@ -43,7 +43,3 @@ Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 
 2. Ensuite entrer la commande suivante dans le terminal :
    symfony console doctrine:fixtures:load (ou symfony console d:f:l)
 
-### Administrateur
-
-Se rendre dans la base de donnée et changer manuellement le role d'un utilisateur.
-['ROLE_USER'] -> ['ROLE_ADMIN']
